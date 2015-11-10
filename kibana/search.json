@@ -1,0 +1,22 @@
+[
+  {
+    "_id": "error-or-warniing",
+    "_type": "search",
+    "_source": {
+      "title": "error-or-warniing",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "_source"
+      ],
+      "sort": [
+        "received_at",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"[openstack-]YYYY.MM\",\"query\":{\"query_string\":{\"query\":\"loglevel:ERROR OR loglevel:WARNING\",\"analyze_wildcard\":true}},\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}},\"require_field_match\":false,\"fragment_size\":2147483647},\"filter\":[]}"
+      }
+    }
+  }
+]
