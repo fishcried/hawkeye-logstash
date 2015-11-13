@@ -1,0 +1,12 @@
+OPENSTACK_NORMAL %{TIMESTAMP_ISO8601:logdate} %{NUMBER:pid} %{LOGLEVEL:loglevel} %{NOTSPACE:module}%{SPACE}
+
+OPENSTACK_TRACE_BLOCK %{TIMESTAMP_ISO8601} %{NUMBER} (ERROR|TRACE) %{NOTSPACE} (Traceback|  File|    )
+OPENSTACK_NEUTRON_CMD_BLOCK %{TIMESTAMP_ISO8601} %{NUMBER} ERROR %{NOTSPACE}%{SPACE}(?:RuntimeERROR|Command|(?:Exit code)|Stdin|Stdout|Stderr)
+
+OPENSTACK_EVENTLET_WSGI \[req-%{NOTSPACE:requestid} %{NOTSPACE:requestid} %{NOTSPACE:requestid} - - -\] %{NOTSPACE:sip} - - \[%{NOTSPACE} %{NOTSPACE}\] \"%{NOTSPACE:http_method} %{NOTSPACE:http_url} HTTP/%{NOTSPACE:http_version}\" %{NUMBER:http_response_code} %{NUMBER:http_request_bytes:int} %{NUMBER:http_response_time:float}
+
+OPENSTACK_NEURON_API %{OPENSTACK_EVENTLET_WSGI}
+
+OPENSTACK_NOVA_API \[(?:(?:req-%{NOTSPACE:requestid} %{NOTSPACE:requestid} %{NOTSPACE:requestid} - - -)|(?:-))\] %{NOTSPACE:sip} \"%{NOTSPACE:http_method} %{NOTSPACE:http_url} HTTP/%{NOTSPACE:http_version}\" status: %{NUMBER:http_response_code} len: %{NUMBER:http_request_bytes:int} time: %{NUMBER:http_response_time:float}
+
+OPENSTACK_CEILOMETER_API \[-\] %{NOTSPACE:sip} - - \[%{DATA}\] \"%{NOTSPACE:http_method} %{NOTSPACE:http_url} HTTP/%{NUMBER:http_version}\" %{NUMBER:http_response_code} -
