@@ -1,0 +1,13 @@
+filter {
+	if "ceilometer-api" in [tags] {
+		if [module] == "werkzeug" and "Running on" not in [message] {
+			grok {
+				match => {
+					message => "%{OPENSTACK_CEILOMETER_API}"
+					add_field => ["api", "ceilometer"]
+					add_tag => ["apimetrics"]
+				}
+			}
+		} 
+	}
+}

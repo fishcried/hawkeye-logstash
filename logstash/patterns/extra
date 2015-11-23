@@ -1,4 +1,9 @@
-OPENSTACK_NORMAL %{TIMESTAMP_ISO8601:logdate} %{NUMBER:pid} %{LOGLEVEL:loglevel} %{NOTSPACE:module}%{SPACE}
+OPENSTACK_NORMAL ^%{TIMESTAMP_ISO8601:logdate} %{NUMBER:pid} %{LOGLEVEL:loglevel} %{NOTSPACE:module}%{SPACE}
+RABBITMQ_PREFIX ^=%{LOGLEVEL:loglevel} REPORT==== %{DATA:logdate} ===\n
+LIBVIRTD_PREFIX ^%{DATA:logdate}\+0000: %{NUMBER}: %{NOTSPACE:loglevel} : %{NOTSPACE:module}:%{NUMBER} :%{SPACE}
+SYS_AUTH_PREFFIX ^(?<logdate>%{MONTH}%{SPACE}%{MONTHDAY}%{SPACE}%{HOUR}:%{MINUTE}:%{SECOND}) %{NOTSPACE:host} %{DATA:module}(?:\[%{NUMBER}\])?:%{SPACE}
+HORIZON_ACCESS_ENTRY ^%{IPORHOST:sip} - - \[%{NOTSPACE:logdate} %{INT}\] \"%{NOTSPACE:http_method} %{NOTSPACE:http_url} HTTP/%{NOTSPACE:http_version}\" %{NUMBER:http_response_code} %{NUMBER:http_request_bytes:int} %{QS:http_refer} %{QS:http_agent}
+HORIZON_ERROR_PREFIX ^\[%{DATA:logdate}\] \[%{NOTSPACE:module}?:%{NOTSPACE:loglevel}\] \[%{DATA}\]%{SPACE}
 
 OPENSTACK_TRACE_BLOCK %{TIMESTAMP_ISO8601} %{NUMBER} (ERROR|TRACE) %{NOTSPACE} (Traceback|  File|    )
 OPENSTACK_NEUTRON_CMD_BLOCK %{TIMESTAMP_ISO8601} %{NUMBER} ERROR %{NOTSPACE}%{SPACE}(?:RuntimeERROR|Command|(?:Exit code)|Stdin|Stdout|Stderr)
