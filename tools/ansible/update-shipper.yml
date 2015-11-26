@@ -1,0 +1,22 @@
+---
+- name: Update shipper configs
+  hosts: shipper_all
+  gather_facts: false
+  sudo: yes
+
+  tasks:
+    - name: sync shipper configures
+      template:
+        src: "{{ item }}"
+        dest: /etc/logstash/conf.d/
+      with_fileglob: shipper/*
+      notify: restart logstash
+    - name: sync pattern file
+      copy:
+        src: patterns/extra
+        dest: /opt/logstash/vendor/bundle/jruby/1.9/gems/logstash-patterns-core-2.0.2/patterns/openstack
+      notify: restart logstash
+
+  handlers:
+    - name: restart logstash
+      service: name=logstash state=restarted

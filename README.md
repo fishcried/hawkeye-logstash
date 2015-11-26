@@ -160,3 +160,15 @@ filter stage主要用于解析日志.这里将解析分为两个阶段：
     }
 
 上面选取了glance的配置。message不是同一格式的，每个module的格式都不一样，所以可以根据module过滤关注的entry然后进行二次解析。提取相应的field.
+
+# How to use it?
+
+**INSTALL**
+
+- ELK相关搭建请参照官方文档自行搭建,搭建完毕后，只需要将相关的shipper,indexer配置存放到`/etc/logstash/conf.d/`目录下即可.
+
+> 关于自动化配置安装可以参考hawk-ansible项目，该项目目前未启动
+
+**Update configs**
+
+为了方便配置变更，在`tools/ansible`文件夹提供了更新shipper/indexer配置的playbook.完善相应的host文件，通过相应playbook即可进行方便的配置变更。

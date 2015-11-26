@@ -1,0 +1,19 @@
+[shipper_all]
+shiper-host-1
+shiper-host-2
+shiper-host-3
+shiper-host-4
+
+[shipper_all:vars]
+redis_key = "xxx_key"
+redis_host = "hostip"
+
+[indexer_all]
+indexer-host-1
+indexer-host-2
+indexer-host-3
+
+[indexer_all:vars]
+redis_key = "xxx_key"
+redis_host = "hostip"
+elasticsearch_cluster = "[\"ip1\",\"ip2\"]"

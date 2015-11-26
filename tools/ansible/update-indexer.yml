@@ -1,0 +1,16 @@
+---
+- name: Update indexer config
+  hosts: indexer_all
+  gather_facts: false
+  sudo: yes
+
+  tasks:
+    - name: sync shipper configures
+      template:
+        src: indexer/openstack-index.conf 
+        dest: /etc/logstash/conf.d/openstack-index.conf
+      notify: restart logstash
+
+  handlers:
+    - name: restart logstash
+      service: name=logstash state=restarted
